@@ -1,0 +1,15 @@
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.AssemblyInfoInputs.cache
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.AssemblyInfo.cs
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.sourcelink.json
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\bin\Debug\net8.0\Jogo_RPG.exe
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\bin\Debug\net8.0\Jogo_RPG.deps.json
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\bin\Debug\net8.0\Jogo_RPG.runtimeconfig.json
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\bin\Debug\net8.0\Jogo_RPG.dll
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\bin\Debug\net8.0\Jogo_RPG.pdb
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.dll
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\refint\Jogo_RPG.dll
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.pdb
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\Jogo_RPG.genruntimeconfig.cache
+C:\Users\Aluno\Documents\GitHub\RPG\Jogo_RPG\Jogo_RPG\obj\Debug\net8.0\ref\Jogo_RPG.dll
