@@ -1,11 +1,4 @@
-﻿
-interface IUsavel
-{
-    string Nome { get; }
-    void Usar(Personagem alvo);
-}
-
-abstract class Personagem
+﻿class Personagem
 {
     private int _vida;
 
@@ -17,7 +10,8 @@ abstract class Personagem
         set { _vida = Math.Max(0, Math.Min(value, VidaMaxima)); }
     }
     public bool EstaVivo => Vida > 0;
-    public List<Habilidade> Habilidades { get; set; } = new List<Habilidade>();
+    public Habilidade Habilidade1 { get; set; }
+    public Habilidade Habilidade2 { get; set; }
 
     public Personagem(string nome, int vidaMaxima)
     {
@@ -26,7 +20,11 @@ abstract class Personagem
         Vida = vidaMaxima;
     }
 
-    public abstract int Atacar();
+    public int Atacar()
+    {
+        Console.WriteLine($"  {Nome} ataca!");
+        return 10;
+    }
 
     public void ReceberDano(int dano)
     {
@@ -40,12 +38,9 @@ abstract class Personagem
         Console.WriteLine($"  {Nome} recuperou {quantidade} de vida! (Vida: {Vida}/{VidaMaxima})");
     }
 
-    public void Resetar()
-    {
-        Vida = VidaMaxima;
-    }
+    public void Resetar() => Vida = VidaMaxima;
 
-    public abstract string ObterTipo();
+    public string ObterTipo() => "Personagem";
 }
 
 class Guerreiro : Personagem
@@ -56,21 +51,19 @@ class Guerreiro : Personagem
     public Guerreiro(string nome) : base(nome, 150)
     {
         Forca = 25;
-        Habilidades.Add(new Habilidade("Golpe Brutal", dano: 45, cura: 0));
-        Habilidades.Add(new Habilidade("Grito de Guerra", dano: 20, cura: 10));
+        Habilidade1 = new Habilidade("Golpe Brutal", dano: 45, cura: 0);
+        Habilidade2 = new Habilidade("Grito de Guerra", dano: 20, cura: 10);
     }
 
-    
-    public override int Atacar()
+    public new int Atacar()
     {
         int dano = Forca + _random.Next(0, 10);
         Console.WriteLine($"  {Nome} ataca com a espada! Dano: {dano}");
         return dano;
     }
 
-    public override string ObterTipo() => "Guerreiro";
+    public new string ObterTipo() => "Guerreiro";
 }
-
 
 class Mago : Personagem
 {
@@ -80,18 +73,18 @@ class Mago : Personagem
     public Mago(string nome) : base(nome, 90)
     {
         PoderMagico = 35;
-        Habilidades.Add(new Habilidade("Bola de Fogo", dano: 50, cura: 0));
-        Habilidades.Add(new Habilidade("Drenar Vida", dano: 20, cura: 20));
+        Habilidade1 = new Habilidade("Bola de Fogo", dano: 50, cura: 0);
+        Habilidade2 = new Habilidade("Drenar Vida", dano: 20, cura: 20);
     }
 
-    public override int Atacar()
+    public new int Atacar()
     {
         int dano = PoderMagico + _random.Next(-5, 10);
         Console.WriteLine($"  {Nome} lanca um feitico! Dano: {dano}");
         return dano;
     }
 
-    public override string ObterTipo() => "Mago";
+    public new string ObterTipo() => "Mago";
 }
 
 class Arqueiro : Personagem
@@ -102,15 +95,14 @@ class Arqueiro : Personagem
     public Arqueiro(string nome) : base(nome, 110)
     {
         Destreza = 22;
-        Habilidades.Add(new Habilidade("Flecha Certeira", dano: 35, cura: 0));
-        Habilidades.Add(new Habilidade("Tiro Duplo", dano: 40, cura: 0));
+        Habilidade1 = new Habilidade("Flecha Certeira", dano: 35, cura: 0);
+        Habilidade2 = new Habilidade("Tiro Duplo", dano: 40, cura: 0);
     }
 
-    public override int Atacar()
+    public new int Atacar()
     {
         int dano = Destreza + _random.Next(0, 8);
 
-        
         if (_random.NextDouble() < 0.25)
         {
             Console.WriteLine($"  {Nome} dispara uma flecha! CRITICO! Dano: {dano * 2}");
@@ -121,9 +113,8 @@ class Arqueiro : Personagem
         return dano;
     }
 
-    public override string ObterTipo() => "Arqueiro";
+    public new string ObterTipo() => "Arqueiro";
 }
-
 
 class Habilidade
 {
@@ -146,8 +137,7 @@ class Habilidade
     }
 }
 
-
-class Pocao : IUsavel
+class Pocao
 {
     public string Nome { get; set; }
     private int _cura;
@@ -165,10 +155,10 @@ class Pocao : IUsavel
     }
 }
 
-
 class Program
 {
-    static List<Personagem> personagens = new List<Personagem>();
+    static Personagem[] personagens = new Personagem[10];
+    static int totalPersonagens = 0;
 
     static void Main()
     {
@@ -176,9 +166,10 @@ class Program
 
         while (!sair)
         {
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine("=== MENU PRINCIPAL ===");
-            Console.WriteLine($"Personagens criados: {personagens.Count}");
+            Console.WriteLine($"Personagens criados: {totalPersonagens}");
             Console.WriteLine("[1] Criar Personagem");
             Console.WriteLine("[2] Ver Personagens");
             Console.WriteLine("[3] Iniciar Combate 1v1");
@@ -191,11 +182,20 @@ class Program
             else if (opcao == "3") IniciarCombate();
             else if (opcao == "0") sair = true;
             else Console.WriteLine("Opcao invalida!");
+            
         }
+        
     }
 
     static void CriarPersonagem()
     {
+        Console.Clear();
+        if (totalPersonagens >= 10)
+        {
+            Console.WriteLine("Limite de personagens atingido!");
+            return;
+        }
+
         Console.WriteLine();
         Console.WriteLine("=== CRIAR PERSONAGEM ===");
         Console.Write("Nome: ");
@@ -213,62 +213,54 @@ class Program
         Console.Write("Classe: ");
         string classe = Console.ReadLine();
 
-        Personagem novo = null;
+        if (classe == "1") personagens[totalPersonagens++] = new Guerreiro(nome);
+        else if (classe == "2") personagens[totalPersonagens++] = new Mago(nome);
+        else if (classe == "3") personagens[totalPersonagens++] = new Arqueiro(nome);
+        else { Console.WriteLine("Classe invalida!"); return; }
 
-        if (classe == "1") novo = new Guerreiro(nome);
-        else if (classe == "2") novo = new Mago(nome);
-        else if (classe == "3") novo = new Arqueiro(nome);
-        else
-        {
-            Console.WriteLine("Classe invalida!");
-            return;
-        }
-
-        personagens.Add(novo);
-        Console.WriteLine($"Personagem {novo.ObterTipo()} '{novo.Nome}' criado!");
+        Console.WriteLine($"Personagem '{nome}' criado!");
+        
     }
 
- 
     static void VerPersonagens()
     {
+        Console.Clear();
         Console.WriteLine();
         Console.WriteLine("=== PERSONAGENS ===");
 
-        if (personagens.Count == 0)
+        if (totalPersonagens == 0)
         {
             Console.WriteLine("Nenhum personagem criado ainda.");
             return;
         }
 
-        for (int i = 0; i < personagens.Count; i++)
+        for (int i = 0; i < totalPersonagens; i++)
         {
             Personagem p = personagens[i];
             Console.WriteLine($"[{i + 1}] {p.ObterTipo()} - {p.Nome} | HP: {p.VidaMaxima}");
-
-            for (int j = 0; j < p.Habilidades.Count; j++)
-            {
-                Habilidade h = p.Habilidades[j];
-                Console.WriteLine($"     Habilidade {j + 1}: {h.Nome} (Dano:{h.Dano} Cura:{h.Cura})");
-            }
+            Console.WriteLine($"     Habilidade 1: {p.Habilidade1.Nome} (Dano:{p.Habilidade1.Dano} Cura:{p.Habilidade1.Cura})");
+            Console.WriteLine($"     Habilidade 2: {p.Habilidade2.Nome} (Dano:{p.Habilidade2.Dano} Cura:{p.Habilidade2.Cura})");
         }
+        
     }
+
     static void IniciarCombate()
     {
+        Console.Clear();
         Console.WriteLine();
 
-        if (personagens.Count < 2)
+        if (totalPersonagens < 2)
         {
             Console.WriteLine("Precisas de pelo menos 2 personagens!");
             return;
         }
-
 
         VerPersonagens();
         Console.WriteLine();
         Console.Write("Escolhe o Jogador 1 (numero): ");
         int idx1 = int.Parse(Console.ReadLine()) - 1;
 
-        if (idx1 < 0 || idx1 >= personagens.Count)
+        if (idx1 < 0 || idx1 >= totalPersonagens)
         {
             Console.WriteLine("Selecao invalida!");
             return;
@@ -277,7 +269,7 @@ class Program
         Console.Write("Escolhe o Jogador 2 (numero): ");
         int idx2 = int.Parse(Console.ReadLine()) - 1;
 
-        if (idx2 < 0 || idx2 >= personagens.Count || idx2 == idx1)
+        if (idx2 < 0 || idx2 >= totalPersonagens || idx2 == idx1)
         {
             Console.WriteLine("Selecao invalida!");
             return;
@@ -289,13 +281,10 @@ class Program
         p1.Resetar();
         p2.Resetar();
 
-        List<IUsavel> inventario1 = new List<IUsavel>();
-        inventario1.Add(new Pocao("Pocao Pequena", 30));
-        inventario1.Add(new Pocao("Pocao Grande", 60));
-
-        List<IUsavel> inventario2 = new List<IUsavel>();
-        inventario2.Add(new Pocao("Pocao Pequena", 30));
-        inventario2.Add(new Pocao("Pocao Grande", 60));
+        Pocao[] inv1 = new Pocao[] { new Pocao("Pocao Pequena", 30), new Pocao("Pocao Grande", 60) };
+        Pocao[] inv2 = new Pocao[] { new Pocao("Pocao Pequena", 30), new Pocao("Pocao Grande", 60) };
+        int inv1Usadas = 0;
+        int inv2Usadas = 0;
 
         Console.WriteLine();
         Console.WriteLine("=== COMBATE INICIADO ===");
@@ -313,15 +302,14 @@ class Program
             {
                 Console.WriteLine();
                 Console.WriteLine($"[Turno de {p1.Nome}]");
-                FazerAcao(p1, p2, inventario1);
+                FazerAcao(p1, p2, inv1, ref inv1Usadas);
             }
-
 
             if (p2.EstaVivo)
             {
                 Console.WriteLine();
                 Console.WriteLine($"[Turno de {p2.Nome}]");
-                FazerAcao(p2, p1, inventario2);
+                FazerAcao(p2, p1, inv2, ref inv2Usadas);
             }
 
             turno++;
@@ -334,9 +322,10 @@ class Program
             Console.WriteLine($"{p1.Nome} venceu o combate!");
         else
             Console.WriteLine($"{p2.Nome} venceu o combate!");
+        
     }
 
-    static void FazerAcao(Personagem atacante, Personagem alvo, List<IUsavel> inventario)
+    static void FazerAcao(Personagem atacante, Personagem alvo, Pocao[] inventario, ref int usadas)
     {
         bool acaoFeita = false;
 
@@ -356,41 +345,36 @@ class Program
             }
             else if (opcao == "2")
             {
-                Console.WriteLine("  Habilidades:");
-                for (int i = 0; i < atacante.Habilidades.Count; i++)
-                {
-                    Habilidade h = atacante.Habilidades[i];
-                    Console.WriteLine($"  [{i + 1}] {h.Nome} (Dano:{h.Dano} Cura:{h.Cura})");
-                }
+                Console.WriteLine($"  [1] {atacante.Habilidade1.Nome} (Dano:{atacante.Habilidade1.Dano} Cura:{atacante.Habilidade1.Cura})");
+                Console.WriteLine($"  [2] {atacante.Habilidade2.Nome} (Dano:{atacante.Habilidade2.Dano} Cura:{atacante.Habilidade2.Cura})");
                 Console.Write("  Escolha: ");
-                int hi = int.Parse(Console.ReadLine()) - 1;
+                string hi = Console.ReadLine();
 
-                if (hi >= 0 && hi < atacante.Habilidades.Count)
-                {
-                    atacante.Habilidades[hi].Usar(atacante, alvo);
-                    acaoFeita = true;
-                }
+                if (hi == "1") { atacante.Habilidade1.Usar(atacante, alvo); acaoFeita = true; }
+                else if (hi == "2") { atacante.Habilidade2.Usar(atacante, alvo); acaoFeita = true; }
                 else Console.WriteLine("  Opcao invalida!");
             }
             else if (opcao == "3")
             {
-                if (inventario.Count == 0)
+                if (usadas >= inventario.Length)
                 {
                     Console.WriteLine("  Inventario vazio!");
                 }
                 else
                 {
-                    Console.WriteLine("  Itens:");
-                    for (int i = 0; i < inventario.Count; i++)
-                        Console.WriteLine($"  [{i + 1}] {inventario[i].Nome}");
+                    for (int i = usadas; i < inventario.Length; i++)
+                        Console.WriteLine($"  [{i - usadas + 1}] {inventario[i].Nome}");
 
                     Console.Write("  Escolha: ");
-                    int ii = int.Parse(Console.ReadLine()) - 1;
+                    int ii = int.Parse(Console.ReadLine()) - 1 + usadas;
 
-                    if (ii >= 0 && ii < inventario.Count)
+                    if (ii >= usadas && ii < inventario.Length)
                     {
                         inventario[ii].Usar(atacante);
-                        inventario.RemoveAt(ii);
+                        Pocao temp = inventario[usadas];
+                        inventario[usadas] = inventario[ii];
+                        inventario[ii] = temp;
+                        usadas++;
                         acaoFeita = true;
                     }
                     else Console.WriteLine("  Opcao invalida!");
