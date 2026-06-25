@@ -180,7 +180,7 @@ class Program
             Console.WriteLine("[1] Criar Personagem");
             Console.WriteLine("[2] Ver Personagens");
             Console.WriteLine("[3] Iniciar Combate 1v1");
-            Console.WriteLine("[4] Ver Resultados dos Combates (Novo!)");
+            Console.WriteLine("[4] Ver Resultados dos Combates");
             Console.WriteLine("[0] Sair");
             Console.Write("Opcao: ");
             string opcao = Console.ReadLine();
