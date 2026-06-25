@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{82562D01-BC1E-4474-8188-5573C31FEA4C}|Jogo_RPG\\Jogo_RPG.csproj|c:\\users\\aluno\\documents\\github\\rpg\\jogo_rpg\\jogo_rpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{82562D01-BC1E-4474-8188-5573C31FEA4C}|Jogo_RPG\\Jogo_RPG.csproj|solutionrelative:jogo_rpg\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{82562D01-BC1E-4474-8188-5573C31FEA4C}|Jogo_RPG\\Jogo_RPG.csproj|c:\\users\\aluno\\documents\\github\\rpg\\jogo_rpg\\jogo_rpg\\jogo_rpg.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{82562D01-BC1E-4474-8188-5573C31FEA4C}|Jogo_RPG\\Jogo_RPG.csproj|solutionrelative:jogo_rpg\\jogo_rpg.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +26,12 @@
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Aluno\\Documents\\GitHub\\RPG\\Jogo_RPG\\Jogo_RPG\\Program.cs",
               "RelativeDocumentMoniker": "Jogo_RPG\\Program.cs",
-              "ToolTip": "C:\\Users\\Aluno\\Documents\\GitHub\\RPG\\Jogo_RPG\\Jogo_RPG\\Program.cs*",
-              "RelativeToolTip": "Jogo_RPG\\Program.cs*",
-              "ViewState": "AgIAANYAAAAAAAAAAAAWwOIAAAAIAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Aluno\\Documents\\GitHub\\RPG\\Jogo_RPG\\Jogo_RPG\\Program.cs",
+              "RelativeToolTip": "Jogo_RPG\\Program.cs",
+              "ViewState": "AgIAACYBAAAAAAAAAAAowDUBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-13T10:48:24.142Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Jogo_RPG.csproj",
-              "DocumentMoniker": "C:\\Users\\Aluno\\Documents\\GitHub\\RPG\\Jogo_RPG\\Jogo_RPG\\Jogo_RPG.csproj",
-              "RelativeDocumentMoniker": "Jogo_RPG\\Jogo_RPG.csproj",
-              "ToolTip": "C:\\Users\\Aluno\\Documents\\GitHub\\RPG\\Jogo_RPG\\Jogo_RPG\\Jogo_RPG.csproj",
-              "RelativeToolTip": "Jogo_RPG\\Jogo_RPG.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-13T10:48:00.333Z"
             }
           ]
         }
